@@ -1,0 +1,721 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap");
+
+/* ── CSS Variables ─────────────────────────────────────────────── */
+:root {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface2: #222222;
+  --border: #2e2e2e;
+  --text: #f0ead8;
+  --text-muted: #7a7065;
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.25);
+  --danger: #ef4444;
+  --danger-glow: rgba(239, 68, 68, 0.2);
+  --success: #22c55e;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --transition: 0.22s ease;
+  --font-body: "Nunito", sans-serif;
+  --font-display: "Playfair Display", serif;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ================================================================
+   NAVBAR
+   ================================================================ */
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 68px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.head img {
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  object-fit: cover;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navbar links (if used) */
+.links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  transition: color var(--transition);
+  position: relative;
+}
+
+.links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+
+.links a:hover {
+  color: var(--accent);
+}
+
+.links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ================================================================
+   APP WRAPPER & HERO
+   ================================================================ */
+.app-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* The tagline under navbar */
+.app-tagline {
+  text-align: center;
+  padding: 2.5rem 1rem 0.5rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+/* ================================================================
+   ENTRIES / STATS BAR
+   ================================================================ */
+
+/* The <ul> wrapper */
+.entries-bar {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 1.5rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Each stat chip — overrides the inline styles */
+.entries-bar li,
+.stat-chip {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 1rem 1.4rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.3rem !important;
+  min-width: 100px !important;
+  flex: 1 !important;
+  box-shadow: var(--shadow) !important;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition) !important;
+  cursor: default !important;
+  list-style: none !important;
+  width: auto !important;
+  height: auto !important;
+  background-color: var(--surface) !important;
+}
+
+.entries-bar li:hover,
+.stat-chip:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.15) !important;
+  border-color: var(--accent) !important;
+}
+
+/* The big value number/emoji */
+.entries-bar li p:first-child {
+  font-family: var(--font-display) !important;
+  font-size: 1.8rem !important;
+  color: var(--text) !important;
+  line-height: 1 !important;
+}
+
+/* The label text */
+.entries-bar li p:last-child {
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  font-family: var(--font-body) !important;
+}
+
+/* ================================================================
+   FEELDATA — MOOD FORM
+   ================================================================ */
+.main-cont {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
+}
+
+/* Section heading inside form */
+.main-cont h4 {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+/* ── Mood Emoji Buttons Grid ──────────────────────────────────── */
+.feel {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.emoji-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.65rem 0.4rem;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.emoji-cont p {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.emoji-cont span {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Hover */
+.emoji-cont:hover {
+  border-color: var(--accent);
+  background: rgba(249, 115, 22, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px var(--accent-glow);
+}
+
+/* Active / Selected — add this class via JS if needed */
+.emoji-cont.active,
+.emoji-cont:focus {
+  border-color: var(--accent);
+  background: rgba(249, 115, 22, 0.14);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ── Note Input ────────────────────────────────────────────────── */
+.note {
+  margin-bottom: 1.2rem;
+}
+
+.note input,
+input[type="text"],
+input[type="search"],
+textarea {
+  width: 100%;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  outline: none;
+}
+
+.note input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Focus state */
+.note input:focus,
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+  background: #1f1510;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ── Tag Day Buttons Grid ─────────────────────────────────────── */
+.tag-day {
+  margin-bottom: 1.2rem;
+}
+
+.tag-day > button,
+.tag-grid > button {
+  display: inline-block;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.3rem 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin: 0.25rem;
+}
+
+.tag-day > button:hover,
+.tag-grid > button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(249, 115, 22, 0.1);
+}
+
+.tag-day > button.active,
+.tag-grid > button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 12px var(--accent-glow);
+}
+
+/* Primary Button (the reusable Button.jsx) */
+button,
+.btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+/* Log / Save CTA button */
+.main-cont > button,
+.btn-primary {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.main-cont > button:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(249, 115, 22, 0.45);
+}
+
+.main-cont > button:active,
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+/* Edit button */
+button[name="✏️ Edit"],
+.btn-edit {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+button[name="✏️ Edit"]:hover,
+.btn-edit:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(249, 115, 22, 0.08);
+}
+
+/* Delete button */
+button[name="🗑️ Delete"],
+.btn-delete {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  margin-left: 0.4rem;
+}
+
+button[name="🗑️ Delete"]:hover,
+.btn-delete:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-glow);
+}
+
+/* Save button */
+button[name="💾 Save"],
+.btn-save {
+  background: var(--success);
+  border: none;
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  box-shadow: 0 3px 12px rgba(34, 197, 94, 0.3);
+}
+
+button[name="💾 Save"]:hover,
+.btn-save:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.entry-actions {
+  gap: 0.6rem;
+}
+/* ================================================================
+   JOURNAL SECTION
+   ================================================================ */
+.jour-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.jour-main h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+/* Mood filter dropdown */
+.jour-main select,
+select {
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  /* Custom arrow */
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7065'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 2rem;
+}
+
+select:focus,
+select:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ── Journal Entry Cards — Grid Layout ──────────────────────────── */
+.journal-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* Each entry card */
+.journal-card,
+.jour-main + div > div {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.journal-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), #ef4444);
+  border-radius: 4px 0 0 4px;
+}
+
+.journal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+/* Emoji and mood label */
+.journal-card li,
+li.mood-emoji,
+li.mood-label {
+  list-style: none;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Note text */
+.journal-card li:nth-child(3) {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin: 0.4rem 0;
+  font-weight: 400;
+}
+
+/* Tag and date */
+.journal-card li:nth-child(4),
+.journal-card li:nth-child(5) {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Entry actions row */
+.entry-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* Edit mode input */
+.journal-card input[type="text"] {
+  margin-bottom: 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Edit mode mood buttons */
+.journal-card > div > button {
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  padding: 0.28rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin: 0.2rem;
+}
+
+.journal-card > div > button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(249, 115, 22, 0.1);
+}
+
+/* "No entries found" message */
+.journal-empty,
+p.no-entry {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: var(--surface);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer,
+.footer,
+.app-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* Social icon links */
+footer a,
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  margin: 0 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+footer a:hover,
+.footer a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(249, 115, 22, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+footer p,
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.8rem;
+}
+
+/* ================================================================
+   UTILITIES & HELPERS
+   ================================================================ */
+
+/* Divider line between entries */
+.entry-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.75rem 0;
+}
+
+/* Tag chip (read-only display) */
+.tag-chip {
+  display: inline-block;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.18rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .main-container {
+    padding: 0 1rem;
+  }
+  .feel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .entries-bar {
+    gap: 0.6rem;
+  }
+  .journal-list {
+    grid-template-columns: 1fr;
+  }
+  .app-wrapper {
+    padding: 0 1rem 3rem;
+  }
+  .main-cont {
+    padding: 1.2rem;
+  }
+  .jour-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .feel {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
