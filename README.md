@@ -88,16 +88,25 @@ npm install
 # Run the application
 npm start
 Project Structure
+
 /project-root
+
 │── src/
+
 │   ├── components/
+
 │   ├── pages/
+
 │   ├── assets/
+
 │   ├── App.js
+
 │   ├── index.js
 │
 │── public/
+
 │── package.json
+
 │── README.md
 
 
@@ -105,12 +114,15 @@ Project Structure
 
 #GitHub & Live Demo
 GitHub Repository:(https://github.com/Samriddhicollege/Samriddhicollege-B.Sc.CSIT-2081-3rdSem-BinitaGautam-React-MoodTracker/)
+
 Live URL (if deployed): (https://m-oo-dtracker.web.app/)
 
 ---
  # Testing
 Tested UI responsiveness on different devices (mobile, tablet, desktop)
+
 Verified mood logging functionality
+
 Checked edge cases (no mood selected, empty history)
 
 ---
@@ -118,17 +130,25 @@ Checked edge cases (no mood selected, empty history)
 #Challenges Faced
 
 Managing state in React components
+
 Designing a simple yet attractive UI
+
 Handling mood data storage and retrieval
 
 ---
  
 #Future Enhancements
+
 Add user authentication system
+
 Improve insights with charts and graphs
+
 Add daily reminders/notifications
+
 Enhance UI/UX with animations
+
 Integrating external APIs properly
+
 Store data permanently using backend/database
 
 ---
